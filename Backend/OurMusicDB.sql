@@ -21,23 +21,24 @@ CREATE TABLE Musica(
 	DataLancamento DATE NOT NULL CHECK (YEAR(DataLancamento) BETWEEN 1888 AND YEAR(GETDATE()) ),
 	Duracao INT NOT NULL CHECK (Duracao>0),
 	ImagemCapa VARCHAR(MAX),
-	Comentario VARCHAR(255)
+	Comentario VARCHAR(255),
+	IdUsuario INT NOT NULL DEFAULT 1 CONSTRAINT FK_Musica_Usuario FOREIGN KEY REFERENCES Usuario(IdUsuario)
 );
 GO
---TABELA GÊNERO
+--TABELA Gï¿½NERO
 CREATE TABLE Genero(
 	IdGenero INT IDENTITY (1, 1) PRIMARY KEY,
 	Nome VARCHAR(50) NOT NULL UNIQUE
 );
 GO
---TABELA INTERMEDIÀRIA (N-N)
+--TABELA INTERMEDIï¿½RIA (N-N)
 CREATE TABLE MusicaGenero(
 	IdMusica INT NOT NULL FOREIGN KEY REFERENCES Musica(IdMusica),
 	IdGenero INT NOT NULL FOREIGN KEY REFERENCES Genero(IdGenero)
 	CONSTRAINT PK_MusicaGenero PRIMARY KEY (IdMusica, IdGenero)
 );
 GO
---TRIGGER: Exclusão de usuários - SOFT DELETE
+--TRIGGER: Exclusï¿½o de usuï¿½rios - SOFT DELETE
 CREATE TRIGGER TR_UsuarioSoftDelete
 ON Usuario
 INSTEAD OF DELETE
@@ -58,7 +59,7 @@ VALUES
 ('Tribal'),
 ('Sertanejo');
 GO
-INSERT INTO Musica (Titulo, Artista, Letra, DataLancamento, Duracao, ImagemCapa, Comentario)
+INSERT INTO Musica (Titulo, Artista, Letra, DataLancamento, Duracao, ImagemCapa, Comentario, IdUsuario)
 VALUES
 ('LIFA',
 'Krigsgaldr',
@@ -102,7 +103,7 @@ But you only understand the language of the sword
 I let the blade do the talking
 So my tongue shall become iron
 And my words the mighty roar of war
-Revealing my divine anger´s arrow shall strike
+Revealing my divine angerï¿½s arrow shall strike
 
 All action for the good of all
 I see my reflection in your eyes
@@ -162,7 +163,8 @@ Hu War Opkam Har a Hit Lot',
 '20171101',
 73,
 'https://cdn-images.dzcdn.net/images/cover/6b680f2097d36493911908b9289ec098/500x500.jpg',
-'Som tribal maneiro'),
+'Som tribal maneiro',
+1),
 
 ('Catharsis',
 'Chikoi The Maid',
@@ -170,7 +172,7 @@ Hu War Opkam Har a Hit Lot',
 '20230828',
 4,
 'https://i1.sndcdn.com/artworks-JuEfSkqtsJkq-0-t500x500.jpg',
-'Música bem bacana!'),
+'Mï¿½sica bem bacana!'),
 
 ('She Knows Your Fears',
 'Takai The Maid',
@@ -178,35 +180,35 @@ Hu War Opkam Har a Hit Lot',
 '20240920',
 3,
 'https://i.ytimg.com/vi/VF19dyVaz1o/maxresdefault.jpg',
-'Música bem bacana!'),
+'Mï¿½sica bem bacana!'),
 
-('Evidências',
-'Chitãozinho & Xororó',
+('Evidï¿½ncias',
+'Chitï¿½ozinho & Xororï¿½',
 'Quando eu digo que deixei de te amar
-É porque eu te amo
-Quando eu digo que não quero mais você
-É porque eu te quero
-Eu tenho medo de te dar meu coração
-E confessar que eu estou em tuas mãos
-Mas não posso imaginar
+ï¿½ porque eu te amo
+Quando eu digo que nï¿½o quero mais vocï¿½
+ï¿½ porque eu te quero
+Eu tenho medo de te dar meu coraï¿½ï¿½o
+E confessar que eu estou em tuas mï¿½os
+Mas nï¿½o posso imaginar
 O que vai ser de mim
 Se eu te perder um dia
 
-Eu me afasto e me defendo de você
+Eu me afasto e me defendo de vocï¿½
 Mas depois me entrego
-Faço tipo, falo coisas que eu não sou
+Faï¿½o tipo, falo coisas que eu nï¿½o sou
 Mas depois eu nego
 Mas a verdade
-É que eu sou louco por você
+ï¿½ que eu sou louco por vocï¿½
 E tenho medo de pensar em te perder
-Eu preciso aceitar que não dá mais
+Eu preciso aceitar que nï¿½o dï¿½ mais
 Pra separar as nossas vidas
 
-E nessa loucura de dizer que não te quero
-Vou negando as aparências
-Disfarçando as evidências
+E nessa loucura de dizer que nï¿½o te quero
+Vou negando as aparï¿½ncias
+Disfarï¿½ando as evidï¿½ncias
 Mas pra que viver fingindo
-Se eu não posso enganar meu coração?
+Se eu nï¿½o posso enganar meu coraï¿½ï¿½o?
 Eu sei que te amo!
 
 Chega de mentiras
@@ -214,17 +216,17 @@ De negar o meu desejo
 Eu te quero mais que tudo
 Eu preciso do seu beijo
 Eu entrego a minha vida
-Pra você fazer o que quiser de mim
-Só quero ouvir você dizer que sim!
+Pra vocï¿½ fazer o que quiser de mim
+Sï¿½ quero ouvir vocï¿½ dizer que sim!
 
-Diz que é verdade, que tem saudade
-Que ainda você pensa muito em mim
-Diz que é verdade, que tem saudade
-Que ainda você quer viver pra mim',
+Diz que ï¿½ verdade, que tem saudade
+Que ainda vocï¿½ pensa muito em mim
+Diz que ï¿½ verdade, que tem saudade
+Que ainda vocï¿½ quer viver pra mim',
 '19901204',
 5,
 'https://images.genius.com/28248ea84fe661efdeca1ee191ca31fd.1000x1000x1.png',
-'Música bem bacana!');
+'Mï¿½sica bem bacana!');
 
 
 SELECT * FROM Musica
@@ -233,8 +235,8 @@ SELECT * FROM MusicaGenero
 
 INSERT MusicaGenero (IdMusica, IdGenero)
 VALUES
-(1,1), --Invocação do mal (terror)
-(1,2); --Invocação do mal (suspense)
+(1,1), --Invocaï¿½ï¿½o do mal (terror)
+(1,2); --Invocaï¿½ï¿½o do mal (suspense)
 
 SELECT F.Titulo , F.DataLancamento, F.Duracao, G.Nome AS Genero
 FROM Musica F INNER JOIN MusicaGenero FG
