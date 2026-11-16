@@ -248,12 +248,11 @@ function DetalhesMusica() {
                                         Comentário e Letra da música
                                     </h2>
 
-                                    <p className="om-detalhes__paragrafo" data-node-id="2:6637">
-                                        Comentário (Comentario):{" "}
-                                        {musica.comentario && musica.comentario.trim()
-                                            ? musica.comentario
-                                            : "Sem comentário cadastrado."}
-                                    </p>
+                                    {listaComentarios.length === 0 ? (
+                                        <p className="om-detalhes__paragrafo" data-node-id="2:6637">
+                                            Comentário (Comentario): Sem comentário cadastrado.
+                                        </p>
+                                    ) : null}
 
                                     <div
                                         className={`om-detalhes__paragrafo om-detalhes__letra ${!temLetra ? "om-detalhes__letra--indisponivel" : ""}`}
