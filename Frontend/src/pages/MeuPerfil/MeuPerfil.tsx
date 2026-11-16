@@ -143,13 +143,10 @@ function MeuPerfil() {
             data-node-id={nodeIdRaiz}
             data-name={emEdicao ? "Editar meu perfil" : "Meu perfil"}
         >
-            <Sidebar
-                modo={ehAdmin ? "admin" : "descoberta"}
-                itemAtivo="perfil"
-            />
+            <Sidebar itemAtivo="perfil" />
 
             <div className="om-main-area">
-                <Header estiloConta={ehAdmin ? "admin" : "usuario"} />
+                <Header />
 
                 <main className="om-page-content om-perfil">
                     {mensagem ? (

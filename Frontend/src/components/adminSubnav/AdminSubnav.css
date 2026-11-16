@@ -1,0 +1,36 @@
+.om-admin-subnav {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px;
+  border-radius: 10px;
+  background: #191d1a;
+  border: 1px solid #303831;
+  align-self: flex-start;
+  flex-wrap: wrap;
+}
+
+.om-admin-subnav__item {
+  height: 36px;
+  padding: 0 14px;
+  border-radius: 7px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #a2ada3;
+  text-decoration: none;
+  transition: background-color 140ms ease, color 140ms ease;
+}
+
+.om-admin-subnav__item:hover {
+  background: rgba(37, 59, 36, 0.45);
+  color: #f2f4ed;
+}
+
+.om-admin-subnav__item--ativo {
+  background: #253b24;
+  color: #b7e887;
+  font-weight: 600;
+}

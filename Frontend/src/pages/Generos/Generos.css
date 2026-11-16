@@ -211,8 +211,9 @@
 }
 
 .om-generos__col-acoes {
-  width: 80px;
+  width: 146px;
   flex-shrink: 0;
+  text-align: right;
 }
 
 .om-generos__linha {
@@ -235,6 +236,14 @@
   display: flex;
   align-items: center;
   gap: 12px;
+}
+
+.om-generos__genero-link {
+  text-decoration: none;
+}
+
+.om-generos__genero-link:hover .om-generos__nome {
+  color: #b7e887;
 }
 
 .om-generos__capa {
@@ -292,11 +301,38 @@
 }
 
 .om-generos__acoes {
-  width: 80px;
+  width: 146px;
   display: flex;
   align-items: center;
-  gap: 16px;
+  justify-content: flex-end;
+  gap: 12px;
   flex-shrink: 0;
+}
+
+.om-generos__acao-explorar {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 5px 10px;
+  border-radius: 6px;
+  background: #222823;
+  border: 1px solid #303831;
+  color: #b7e887;
+  font-size: 11px;
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.om-generos__acao-explorar:hover {
+  background: #253b24;
+  border-color: rgba(183, 232, 135, 0.4);
+  color: #b7e887;
+}
+
+.om-generos__acao-explorar img {
+  width: 12px;
+  height: 12px;
 }
 
 .om-generos__acao-btn {

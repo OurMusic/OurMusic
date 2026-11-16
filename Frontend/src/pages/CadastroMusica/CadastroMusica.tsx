@@ -28,6 +28,7 @@ interface FormularioMusicaState {
     titulo: string;
     artista: string;
     imagemCapa: string;
+    urlMusica: string;
     dataLancamento: string;
     duracao: string;
     comentario: string;
@@ -40,6 +41,7 @@ const INICIAL: FormularioMusicaState = {
     titulo: "",
     artista: "",
     imagemCapa: "",
+    urlMusica: "",
     dataLancamento: new Date().toISOString().slice(0, 10),
     duracao: "228",
     comentario: "",
@@ -81,6 +83,7 @@ function CadastroMusica() {
                     titulo: detalhe.titulo,
                     artista: detalhe.artista,
                     imagemCapa: detalhe.imagemCapa || "",
+                    urlMusica: detalhe.urlMusica || "",
                     dataLancamento: detalhe.dataLancamento.slice(0, 10),
                     duracao: String(detalhe.duracao),
                     comentario: detalhe.comentario || "",
@@ -176,6 +179,7 @@ function CadastroMusica() {
                 dataLancamento: formulario.dataLancamento,
                 duracao: duracaoNum,
                 comentario: formulario.comentario.trim() || null,
+                urlMusica: formulario.urlMusica.trim() || null,
                 letra: formulario.letra || null,
                 arquivoImagem: formulario.arquivoImagem,
                 imagemCapa: formulario.arquivoImagem
@@ -227,12 +231,11 @@ function CadastroMusica() {
             data-name="Cadastro e edição de música"
         >
             <Sidebar
-                modo={emEdicao || ehAdmin ? "admin" : "descoberta"}
                 itemAtivo={emEdicao ? "admin-musicas" : "cadastrar-musica"}
             />
 
             <div className="om-main-area">
-                <Header estiloConta={emEdicao ? "admin" : "auto"} />
+                <Header />
 
                 <main className="om-page-content om-cadastro-musica">
                     <Link
@@ -551,6 +554,24 @@ function CadastroMusica() {
                                                 </span>
                                             </div>
                                         ) : null}
+                                    </div>
+
+                                    <div className="om-cadastro-musica__campo">
+                                        <label htmlFor="musica-url-audio">
+                                            Link da música no YouTube (UrlMusica)
+                                        </label>
+                                        <Campo
+                                            id="musica-url-audio"
+                                            name="urlMusica"
+                                            type="url"
+                                            value={formulario.urlMusica}
+                                            onChange={atualizarCampo}
+                                            placeholder="https://www.youtube.com/watch?v=..."
+                                            maxLength={500}
+                                        />
+                                        <span className="om-cadastro-musica__ajuda">
+                                            Opcional. Permite reproduzir a música diretamente pelo player do OurMusic.
+                                        </span>
                                     </div>
 
                                     <div className="om-cadastro-musica__campo">

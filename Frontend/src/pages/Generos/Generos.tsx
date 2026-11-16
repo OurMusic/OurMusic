@@ -1,8 +1,10 @@
 import { useCallback, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Sidebar from "../../components/sidebar/Sidebar";
 import Header from "../../components/header/Header";
+import AdminSubnav from "../../components/adminSubnav/AdminSubnav";
 import Botao from "../../components/botao/Botao";
+import { perfilEhAdministrador, useAuth } from "../../context/auth";
 import { generoService, musicaService } from "../../services/ourMusicService";
 import { getApiErrorMessage } from "../../services/api";
 import type { Genero, MusicaResumo } from "../../types/api";
@@ -13,10 +15,13 @@ import globeStat from "../../assets/icons/globe-stat.svg";
 import filePenStat from "../../assets/icons/file-pen-stat.svg";
 import searchIcon from "../../assets/icons/search.svg";
 import pencilIcon from "../../assets/icons/pencil.svg";
+import arrowUpRightGreen from "../../assets/icons/arrow-up-right-green.svg";
 import "./Generos.css";
 
 function Generos() {
     const navigate = useNavigate();
+    const { perfil } = useAuth();
+    const administrador = perfilEhAdministrador(perfil);
     const [generos, setGeneros] = useState<Genero[]>([]);
     const [musicas, setMusicas] = useState<MusicaResumo[]>([]);
     const [busca, setBusca] = useState("");
@@ -85,36 +90,41 @@ function Generos() {
             data-node-id="13:4"
             data-name="Gerenciamento de gêneros"
         >
-            <Sidebar modo="admin" itemAtivo="generos" />
+            <Sidebar itemAtivo="generos" />
 
             <div className="om-main-area">
-                <Header estiloConta="admin" />
+                <Header />
 
                 <main className="om-page-content om-generos">
+                    {administrador ? <AdminSubnav ativo="generos" /> : null}
+
                     <section className="om-generos__cabecalho" data-node-id="13:49">
                         <div className="om-generos__apresentacao" data-node-id="13:50">
                             <p className="om-generos__contexto" data-node-id="13:51">
-                                GESTÃO DE GÊNEROS
+                                {administrador ? "GESTÃO DE GÊNEROS" : "EXPLORAR GÊNEROS"}
                             </p>
                             <h1 className="om-generos__titulo" data-node-id="13:52">
                                 Gêneros musicais
                             </h1>
                             <p className="om-generos__descricao" data-node-id="13:53">
-                                Cadastre novos gêneros e edite os nomes existentes
-                                vinculados às músicas do catálogo.
+                                {administrador
+                                    ? "Cadastre novos gêneros e edite os nomes existentes vinculados às músicas do catálogo."
+                                    : "Explore os gêneros musicais do acervo e clique em qualquer estilo para filtrar as músicas no catálogo."}
                             </p>
                         </div>
 
-                        <div className="om-generos__acoes-topo">
-                            <Botao
-                                type="button"
-                                variante="primario"
-                                icone={plusIcon}
-                                texto="Novo gênero"
-                                onClick={() => navigate("/generos/novo")}
-                                data-node-id="13:54"
-                            />
-                        </div>
+                        {administrador ? (
+                            <div className="om-generos__acoes-topo">
+                                <Botao
+                                    type="button"
+                                    variante="primario"
+                                    icone={plusIcon}
+                                    texto="Novo gênero"
+                                    onClick={() => navigate("/generos/novo")}
+                                    data-node-id="13:54"
+                                />
+                            </div>
+                        ) : null}
                     </section>
 
                     <section className="om-generos__kpis" data-node-id="13:58">
@@ -188,9 +198,11 @@ function Generos() {
                                 className="om-generos__tabela-cabecalho"
                                 data-node-id="13:92"
                             >
-                                <div className="om-generos__col-check">
-                                    <span className="om-generos__checkbox" />
-                                </div>
+                                {administrador ? (
+                                    <div className="om-generos__col-check">
+                                        <span className="om-generos__checkbox" />
+                                    </div>
+                                ) : null}
                                 <span className="om-generos__col-nome">
                                     GÊNERO MUSICAL (TABELA GENERO)
                                 </span>
@@ -198,10 +210,14 @@ function Generos() {
                                 <span className="om-generos__col-musicas">
                                     MÚSICAS VINCULADAS
                                 </span>
-                                <span className="om-generos__col-unicidade">
-                                    UNICIDADE (RN11)
+                                {administrador ? (
+                                    <span className="om-generos__col-unicidade">
+                                        UNICIDADE (RN11)
+                                    </span>
+                                ) : null}
+                                <span className="om-generos__col-acoes">
+                                    {administrador ? "AÇÕES (RF11)" : "CATÁLOGO"}
                                 </span>
-                                <span className="om-generos__col-acoes">AÇÕES (RF11)</span>
                             </div>
 
                             {carregando ? (
@@ -232,24 +248,31 @@ function Generos() {
                                         // Ignora leitura local
                                     }
 
+                                    const urlCatalogoGenero = `/catalogo?idGenero=${genero.idGenero}`;
+
                                     return (
                                         <div
                                             key={genero.idGenero}
                                             className={`om-generos__linha ${ativo ? "om-generos__linha--ativa" : ""}`}
                                             data-name="Linha de gênero"
                                         >
-                                            <div className="om-generos__col-check">
-                                                <button
-                                                    type="button"
-                                                    className={`om-generos__checkbox ${marcado ? "om-generos__checkbox--marcado" : ""}`}
-                                                    onClick={() =>
-                                                        alternarSelecao(genero.idGenero)
-                                                    }
-                                                    aria-label={`Selecionar ${genero.nome}`}
-                                                />
-                                            </div>
+                                            {administrador ? (
+                                                <div className="om-generos__col-check">
+                                                    <button
+                                                        type="button"
+                                                        className={`om-generos__checkbox ${marcado ? "om-generos__checkbox--marcado" : ""}`}
+                                                        onClick={() =>
+                                                            alternarSelecao(genero.idGenero)
+                                                        }
+                                                        aria-label={`Selecionar ${genero.nome}`}
+                                                    />
+                                                </div>
+                                            ) : null}
 
-                                            <div className="om-generos__genero-info">
+                                            <Link
+                                                to={urlCatalogoGenero}
+                                                className="om-generos__genero-info om-generos__genero-link"
+                                            >
                                                 <div className="om-generos__capa">
                                                     <img
                                                         src={
@@ -265,12 +288,14 @@ function Generos() {
                                                     </span>
                                                     <span className="om-generos__sub">
                                                         {descSalva ||
-                                                            (genero.idGenero <= 3
-                                                                ? "Gênero inicial do banco OurMusicDB.sql"
-                                                                : "Cadastrado pelo Administrador")}
+                                                            (administrador
+                                                                ? genero.idGenero <= 3
+                                                                    ? "Gênero inicial do banco OurMusicDB.sql"
+                                                                    : "Cadastrado pelo Administrador"
+                                                                : `Filtrar músicas de ${genero.nome} no catálogo`)}
                                                     </span>
                                                 </div>
-                                            </div>
+                                            </Link>
 
                                             <span className="om-generos__cel-id">
                                                 #{String(genero.idGenero).padStart(2, "0")}
@@ -281,23 +306,36 @@ function Generos() {
                                                 {qtdMusicas === 1 ? "música" : "músicas"}
                                             </span>
 
-                                            <span className="om-generos__cel-unicidade">
-                                                Nome único validado
-                                            </span>
+                                            {administrador ? (
+                                                <span className="om-generos__cel-unicidade">
+                                                    Nome único validado
+                                                </span>
+                                            ) : null}
 
                                             <div className="om-generos__acoes">
-                                                <button
-                                                    type="button"
-                                                    className="om-generos__acao-btn"
-                                                    aria-label={`Editar ${genero.nome}`}
-                                                    onClick={() =>
-                                                        navigate(
-                                                            `/generos/editar/${genero.idGenero}`,
-                                                        )
-                                                    }
+                                                <Link
+                                                    to={urlCatalogoGenero}
+                                                    className="om-generos__acao-explorar"
+                                                    aria-label={`Ver músicas de ${genero.nome} no catálogo`}
+                                                    title={`Ver músicas de ${genero.nome}`}
                                                 >
-                                                    <img src={pencilIcon} alt="" />
-                                                </button>
+                                                    <span>Ver músicas</span>
+                                                    <img src={arrowUpRightGreen} alt="" />
+                                                </Link>
+                                                {administrador ? (
+                                                    <button
+                                                        type="button"
+                                                        className="om-generos__acao-btn"
+                                                        aria-label={`Editar ${genero.nome}`}
+                                                        onClick={() =>
+                                                            navigate(
+                                                                `/generos/editar/${genero.idGenero}`,
+                                                            )
+                                                        }
+                                                    >
+                                                        <img src={pencilIcon} alt="" />
+                                                    </button>
+                                                ) : null}
                                             </div>
                                         </div>
                                     );

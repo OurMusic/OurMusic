@@ -108,6 +108,13 @@ function Header({
                                 Catálogo de músicas
                             </Link>
                             <Link
+                                to="/generos"
+                                className="om-topbar__dropdown-item"
+                                onClick={() => setMenuAberto(false)}
+                            >
+                                Gêneros musicais
+                            </Link>
+                            <Link
                                 to="/perfil"
                                 className="om-topbar__dropdown-item"
                                 onClick={() => setMenuAberto(false)}

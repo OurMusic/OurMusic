@@ -203,10 +203,10 @@ function CadastroUsuario() {
             data-node-id={emEdicao ? "21:126" : "13:249"}
             data-name={emEdicao ? "Edição de usuário" : "Cadastro de usuário"}
         >
-            <Sidebar modo="admin" itemAtivo="usuarios" />
+            <Sidebar itemAtivo="usuarios" />
 
             <div className="om-main-area">
-                <Header estiloConta="admin" />
+                <Header />
 
                 <main className="om-page-content om-cadastro-usuario">
                     <Link

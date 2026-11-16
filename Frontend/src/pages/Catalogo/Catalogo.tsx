@@ -1,9 +1,10 @@
 import { useCallback, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import Sidebar from "../../components/sidebar/Sidebar";
 import Header from "../../components/header/Header";
 import CardMusica from "../../components/cardMusica/CardMusica";
 import { useAuth } from "../../context/auth";
+import { usePlayer } from "../../context/player";
 import { generoService, musicaService } from "../../services/ourMusicService";
 import { getApiErrorMessage } from "../../services/api";
 import type { Genero, MusicaResumo } from "../../types/api";
@@ -62,14 +63,29 @@ const DESTAQUES_EDITORIAIS = [
 
 function Catalogo() {
     const { usuario } = useAuth();
+    const { definirFila } = usePlayer();
+    const [searchParams, setSearchParams] = useSearchParams();
+    const idGeneroParamRaw = searchParams.get("idGenero");
+    const idGeneroParamNum = idGeneroParamRaw ? Number(idGeneroParamRaw) : NaN;
+    const idGeneroQuery =
+        Number.isInteger(idGeneroParamNum) && idGeneroParamNum > 0
+            ? idGeneroParamNum
+            : null;
+
+    const idGeneroSelecionado = idGeneroQuery;
+    const filtroChave = String(idGeneroSelecionado ?? "");
+
     const [generos, setGeneros] = useState<Genero[]>([]);
     const [musicas, setMusicas] = useState<MusicaResumo[]>([]);
     const [total, setTotal] = useState(0);
     const [totalGeral, setTotalGeral] = useState(0);
-    const [pagina, setPagina] = useState(1);
+    const [paginacaoEstado, setPaginacaoEstado] = useState<{
+        filtro: string;
+        pagina: number;
+    }>({ filtro: filtroChave, pagina: 1 });
+    const pagina = paginacaoEstado.filtro === filtroChave ? paginacaoEstado.pagina : 1;
     const tamanhoPagina = 15;
     const [busca, setBusca] = useState("");
-    const [idGeneroSelecionado, setIdGeneroSelecionado] = useState<number | null>(null);
     const [carregando, setCarregando] = useState(true);
     const [erro, setErro] = useState("");
 
@@ -99,6 +115,7 @@ function Catalogo() {
                 idGenero: idGeneroSelecionado,
             });
             setMusicas(resposta.items);
+            definirFila(resposta.items);
             setTotal(resposta.total);
             if (!busca.trim() && !idGeneroSelecionado) {
                 setTotalGeral(resposta.total);
@@ -110,7 +127,7 @@ function Catalogo() {
             setGradeFadeOut(false);
             setCicloGrade((c) => c + 1);
         }
-    }, [pagina, tamanhoPagina, busca, idGeneroSelecionado]);
+    }, [pagina, tamanhoPagina, busca, idGeneroSelecionado, definirFila]);
 
     useEffect(() => {
         const timeout = window.setTimeout(() => void carregarGeneros(), 0);
@@ -145,8 +162,14 @@ function Catalogo() {
         if (idGenero === idGeneroSelecionado && !busca) return;
         setGradeFadeOut(true);
         window.setTimeout(() => {
-            setIdGeneroSelecionado(idGenero);
-            setPagina(1);
+            const proximo = new URLSearchParams(searchParams);
+            if (idGenero) {
+                proximo.set("idGenero", String(idGenero));
+            } else {
+                proximo.delete("idGenero");
+            }
+            setPaginacaoEstado({ filtro: String(idGenero ?? ""), pagina: 1 });
+            setSearchParams(proximo, { replace: true });
         }, 450);
     }
 
@@ -154,7 +177,7 @@ function Catalogo() {
         if (novaPagina === pagina) return;
         setGradeFadeOut(true);
         window.setTimeout(() => {
-            setPagina(novaPagina);
+            setPaginacaoEstado({ filtro: filtroChave, pagina: novaPagina });
         }, 450);
     }
 
@@ -301,7 +324,7 @@ function Catalogo() {
                                     onChange={(e) => {
                                         setGradeFadeOut(true);
                                         setBusca(e.target.value);
-                                        setPagina(1);
+                                        setPaginacaoEstado({ filtro: filtroChave, pagina: 1 });
                                     }}
                                     placeholder="Buscar músicas pelo título..."
                                     aria-label="Buscar músicas pelo título"
@@ -344,8 +367,10 @@ function Catalogo() {
                                     onClick={() => {
                                         setGradeFadeOut(true);
                                         setBusca(nomeExtra);
-                                        setIdGeneroSelecionado(null);
-                                        setPagina(1);
+                                        setPaginacaoEstado({ filtro: "", pagina: 1 });
+                                        const proximo = new URLSearchParams(searchParams);
+                                        proximo.delete("idGenero");
+                                        setSearchParams(proximo, { replace: true });
                                     }}
                                 >
                                     {nomeExtra}

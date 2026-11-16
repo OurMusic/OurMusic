@@ -2,6 +2,7 @@ import { useCallback, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Sidebar from "../../components/sidebar/Sidebar";
 import Header from "../../components/header/Header";
+import AdminSubnav from "../../components/adminSubnav/AdminSubnav";
 import Botao from "../../components/botao/Botao";
 import ModalConfirmacao from "../../components/modalConfirmacao/ModalConfirmacao";
 import { generoService, musicaService } from "../../services/ourMusicService";
@@ -135,12 +136,14 @@ function AdministracaoMusicas() {
             data-node-id="2:6687"
             data-name="Administração de músicas"
         >
-            <Sidebar modo="admin" itemAtivo="admin-musicas" notaAcesso="admin" />
+            <Sidebar itemAtivo="admin-musicas" notaAcesso="admin" />
 
             <div className="om-main-area">
-                <Header estiloConta="admin" />
+                <Header />
 
                 <main className="om-page-content om-admin-musicas">
+                    <AdminSubnav ativo="musicas" />
+
                     <section className="om-admin-musicas__cabecalho" data-node-id="2:6725">
                         <div
                             className="om-admin-musicas__apresentacao"

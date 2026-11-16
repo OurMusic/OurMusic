@@ -1,0 +1,12 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Pausar" clip-path="url(#clip0_0_17)">
+<path id="Vector" d="M17 34C26.3888 34 34 26.3888 34 17C34 7.61116 26.3888 0 17 0C7.61116 0 0 7.61116 0 17C0 26.3888 7.61116 34 17 34Z" fill="#F2F4ED"/>
+<path id="Vector_2" d="M14.5 11H13C12.4477 11 12 11.4477 12 12V22C12 22.5523 12.4477 23 13 23H14.5C15.0523 23 15.5 22.5523 15.5 22V12C15.5 11.4477 15.0523 11 14.5 11Z" fill="#090B0A"/>
+<path id="Vector_3" d="M21 11H19.5C18.9477 11 18.5 11.4477 18.5 12V22C18.5 22.5523 18.9477 23 19.5 23H21C21.5523 23 22 22.5523 22 22V12C22 11.4477 21.5523 11 21 11Z" fill="#090B0A"/>
+</g>
+<defs>
+<clipPath id="clip0_0_17">
+<rect width="34" height="34" fill="white"/>
+</clipPath>
+</defs>
+</svg>

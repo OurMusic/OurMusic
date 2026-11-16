@@ -43,7 +43,7 @@ function AppRoutes() {
             <Route
                 path="/musicas/editar/:id"
                 element={
-                    <ProtectedRoute role="administrador">
+                    <ProtectedRoute>
                         <CadastroMusica />
                     </ProtectedRoute>
                 }
@@ -88,7 +88,7 @@ function AppRoutes() {
             <Route
                 path="/generos"
                 element={
-                    <ProtectedRoute role="administrador">
+                    <ProtectedRoute>
                         <Generos />
                     </ProtectedRoute>
                 }

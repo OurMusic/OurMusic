@@ -1,5 +1,6 @@
 import { axiosInstance } from "./api";
 import type {
+    Comentario,
     Genero,
     GeneroPayload,
     LoginPayload,
@@ -26,6 +27,10 @@ function musicaFormData(payload: MusicaPayload) {
 
     if (payload.comentario !== undefined && payload.comentario !== null) {
         formData.append("Comentario", payload.comentario);
+    }
+
+    if (payload.urlMusica && payload.urlMusica.trim()) {
+        formData.append("UrlMusica", payload.urlMusica.trim());
     }
 
     if (payload.arquivoImagem) {
@@ -158,5 +163,17 @@ export const usuarioService = {
 
     async desativar(id: number | string) {
         await axiosInstance.delete(`Usuario/${id}`);
+    },
+};
+
+export const comentarioService = {
+    async listarPorMusica(idMusica: number | string) {
+        const { data } = await axiosInstance.get<Comentario[]>(`Comentario/Musica/${idMusica}`);
+        return data;
+    },
+
+    async cadastrar(idMusica: number, texto: string) {
+        const { data } = await axiosInstance.post<Comentario>("Comentario", { idMusica, texto });
+        return data;
     },
 };

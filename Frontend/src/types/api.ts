@@ -39,12 +39,15 @@ export interface MusicaResumo {
     dataLancamento: string;
     duracao: number;
     imagemCapa?: string | null;
+    urlMusica?: string | null;
+    idUsuario?: number;
     generos: Genero[];
 }
 
 export interface Musica extends MusicaResumo {
     letra?: string | null;
     comentario?: string | null;
+    comentarios?: Comentario[];
 }
 
 export interface MusicaPaginadaResponse {
@@ -68,6 +71,7 @@ export interface MusicaPayload {
     dataLancamento: string;
     duracao: number;
     comentario?: string | null;
+    urlMusica?: string | null;
     imagemCapa?: string | null;
     arquivoImagem?: File | null;
     idGeneros: number[];
@@ -86,4 +90,13 @@ export interface LoginResponse {
 
 export interface AuthSession extends LoginResponse {
     usuario: Usuario;
+}
+
+export interface Comentario {
+    idComentario: number;
+    texto: string;
+    dataComentario: string;
+    idMusica: number;
+    idUsuario: number;
+    nomeUsuario?: string | null;
 }

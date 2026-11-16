@@ -2,6 +2,7 @@ import { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Sidebar from "../../components/sidebar/Sidebar";
 import Header from "../../components/header/Header";
+import AdminSubnav from "../../components/adminSubnav/AdminSubnav";
 import Botao from "../../components/botao/Botao";
 import ListaUsuarios from "../../components/listaUsuarios/ListaUsuarios";
 import ModalConfirmacao from "../../components/modalConfirmacao/ModalConfirmacao";
@@ -138,12 +139,14 @@ function Usuarios() {
             data-node-id="2:7027"
             data-name="Gerenciamento de usuários"
         >
-            <Sidebar modo="admin" itemAtivo="usuarios" />
+            <Sidebar itemAtivo="usuarios" />
 
             <div className="om-main-area">
-                <Header estiloConta="admin" />
+                <Header />
 
                 <main className="om-page-content om-usuarios">
+                    <AdminSubnav ativo="usuarios" />
+
                     <section className="om-usuarios__cabecalho" data-node-id="2:7065">
                         <div className="om-usuarios__apresentacao" data-node-id="2:7066">
                             <p className="om-usuarios__contexto" data-node-id="2:7067">

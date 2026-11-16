@@ -136,10 +136,10 @@ function CadastroGenero() {
             data-node-id={emEdicao ? "21:442" : "21:269"}
             data-name={emEdicao ? "Edição de genero" : "Cadastro de genero"}
         >
-            <Sidebar modo="admin" itemAtivo="generos" />
+            <Sidebar itemAtivo="generos" />
 
             <div className="om-main-area">
-                <Header estiloConta="admin" />
+                <Header />
 
                 <main className="om-page-content om-cadastro-genero">
                     <Link
