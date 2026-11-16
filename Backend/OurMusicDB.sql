@@ -21,6 +21,7 @@ CREATE TABLE Musica(
 	DataLancamento DATE NOT NULL CHECK (YEAR(DataLancamento) BETWEEN 1888 AND YEAR(GETDATE()) ),
 	Duracao INT NOT NULL CHECK (Duracao>0),
 	ImagemCapa VARCHAR(MAX),
+	UrlMusica VARCHAR(500),
 	IdUsuario INT NOT NULL DEFAULT 1 CONSTRAINT FK_Musica_Usuario FOREIGN KEY REFERENCES Usuario(IdUsuario)
 );
 GO
@@ -73,7 +74,7 @@ VALUES
 ('Tribal'),
 ('Sertanejo');
 GO
-INSERT INTO Musica (Titulo, Artista, Letra, DataLancamento, Duracao, ImagemCapa, IdUsuario)
+INSERT INTO Musica (Titulo, Artista, Letra, DataLancamento, Duracao, ImagemCapa, UrlMusica, IdUsuario)
 VALUES
 ('LIFA',
 'Krigsgaldr',
@@ -177,6 +178,7 @@ Hu War Opkam Har a Hit Lot',
 '20171101',
 73,
 'https://cdn-images.dzcdn.net/images/cover/6b680f2097d36493911908b9289ec098/500x500.jpg',
+'https://music.youtube.com/watch?v=QRg_8NNPTD8',
 1),
 
 ('Catharsis',
@@ -185,6 +187,7 @@ Hu War Opkam Har a Hit Lot',
 '20230828',
 4,
 'https://i1.sndcdn.com/artworks-JuEfSkqtsJkq-0-t500x500.jpg',
+'https://music.youtube.com/watch?v=9xG91n388zI',
 1),
 
 ('She Knows Your Fears',
@@ -193,6 +196,7 @@ Hu War Opkam Har a Hit Lot',
 '20240920',
 3,
 'https://i.ytimg.com/vi/VF19dyVaz1o/maxresdefault.jpg',
+'https://music.youtube.com/watch?v=VF19dyVaz1o',
 1),
 
 ('Evidências',
@@ -239,6 +243,7 @@ Que ainda você quer viver pra mim',
 '19901204',
 5,
 'https://images.genius.com/28248ea84fe661efdeca1ee191ca31fd.1000x1000x1.png',
+'https://music.youtube.com/watch?v=ePjtnSPFWK8',
 1);
 GO
 INSERT INTO Comentario (Texto, IdMusica, IdUsuario)
