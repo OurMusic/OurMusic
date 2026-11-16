@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -32,6 +32,12 @@ public partial class Musica
     [StringLength(255)]
     [Unicode(false)]
     public string? Comentario { get; set; }
+
+    public int IdUsuario { get; set; }
+
+    [ForeignKey("IdUsuario")]
+    [InverseProperty("Musica")]
+    public virtual Usuario IdUsuarioNavigation { get; set; } = null!;
 
     [ForeignKey("IdMusica")]
     [InverseProperty("IdMusica")]

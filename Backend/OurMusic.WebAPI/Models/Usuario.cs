@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -29,4 +29,7 @@ public partial class Usuario
     public string TipoUsuario { get; set; } = null!;
 
     public bool Ativo { get; set; }
+
+    [InverseProperty("IdUsuarioNavigation")]
+    public virtual ICollection<Musica> Musica { get; set; } = new List<Musica>();
 }

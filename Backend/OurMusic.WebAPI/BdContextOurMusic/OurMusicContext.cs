@@ -33,6 +33,12 @@ public partial class OurMusicContext : DbContext
         {
             entity.HasKey(e => e.IdMusica).HasName("PK__Musica__F026ACA746B8CD51");
 
+            entity.Property(e => e.IdUsuario).HasDefaultValue(1);
+
+            entity.HasOne(d => d.IdUsuarioNavigation).WithMany(p => p.Musica)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_Musica_Usuario");
+
             entity.HasMany(d => d.IdGenero).WithMany(p => p.IdMusica)
                 .UsingEntity<Dictionary<string, object>>(
                     "MusicaGenero",
