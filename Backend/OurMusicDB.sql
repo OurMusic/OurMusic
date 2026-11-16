@@ -21,24 +21,38 @@ CREATE TABLE Musica(
 	DataLancamento DATE NOT NULL CHECK (YEAR(DataLancamento) BETWEEN 1888 AND YEAR(GETDATE()) ),
 	Duracao INT NOT NULL CHECK (Duracao>0),
 	ImagemCapa VARCHAR(MAX),
-	Comentario VARCHAR(255),
 	IdUsuario INT NOT NULL DEFAULT 1 CONSTRAINT FK_Musica_Usuario FOREIGN KEY REFERENCES Usuario(IdUsuario)
 );
 GO
---TABELA G�NERO
+--TABELA GÊNERO
 CREATE TABLE Genero(
 	IdGenero INT IDENTITY (1, 1) PRIMARY KEY,
 	Nome VARCHAR(50) NOT NULL UNIQUE
 );
 GO
---TABELA INTERMEDI�RIA (N-N)
+--TABELA INTERMEDIÁRIA (N-N)
 CREATE TABLE MusicaGenero(
 	IdMusica INT NOT NULL FOREIGN KEY REFERENCES Musica(IdMusica),
 	IdGenero INT NOT NULL FOREIGN KEY REFERENCES Genero(IdGenero)
 	CONSTRAINT PK_MusicaGenero PRIMARY KEY (IdMusica, IdGenero)
 );
 GO
---TRIGGER: Exclus�o de usu�rios - SOFT DELETE
+--TABELA COMENTÁRIO
+CREATE TABLE Comentario(
+	IdComentario INT IDENTITY(1, 1) PRIMARY KEY,
+	Texto VARCHAR(255) NOT NULL,
+	DataComentario DATETIME2 NOT NULL CONSTRAINT DF_Comentario_Data DEFAULT SYSDATETIME(),
+	IdMusica INT NOT NULL CONSTRAINT FK_Comentario_Musica FOREIGN KEY REFERENCES Musica(IdMusica) ON DELETE CASCADE,
+	IdUsuario INT NOT NULL CONSTRAINT FK_Comentario_Usuario FOREIGN KEY REFERENCES Usuario(IdUsuario)
+);
+GO
+CREATE NONCLUSTERED INDEX IX_Comentario_IdMusica
+	ON Comentario (IdMusica, DataComentario DESC);
+
+CREATE NONCLUSTERED INDEX IX_Comentario_IdUsuario
+	ON Comentario (IdUsuario);
+GO
+--TRIGGER: Exclusão de usuários - SOFT DELETE
 CREATE TRIGGER TR_UsuarioSoftDelete
 ON Usuario
 INSTEAD OF DELETE
@@ -59,7 +73,7 @@ VALUES
 ('Tribal'),
 ('Sertanejo');
 GO
-INSERT INTO Musica (Titulo, Artista, Letra, DataLancamento, Duracao, ImagemCapa, Comentario, IdUsuario)
+INSERT INTO Musica (Titulo, Artista, Letra, DataLancamento, Duracao, ImagemCapa, IdUsuario)
 VALUES
 ('LIFA',
 'Krigsgaldr',
@@ -103,7 +117,7 @@ But you only understand the language of the sword
 I let the blade do the talking
 So my tongue shall become iron
 And my words the mighty roar of war
-Revealing my divine anger�s arrow shall strike
+Revealing my divine anger’s arrow shall strike
 
 All action for the good of all
 I see my reflection in your eyes
@@ -163,7 +177,6 @@ Hu War Opkam Har a Hit Lot',
 '20171101',
 73,
 'https://cdn-images.dzcdn.net/images/cover/6b680f2097d36493911908b9289ec098/500x500.jpg',
-'Som tribal maneiro',
 1),
 
 ('Catharsis',
@@ -172,7 +185,7 @@ Hu War Opkam Har a Hit Lot',
 '20230828',
 4,
 'https://i1.sndcdn.com/artworks-JuEfSkqtsJkq-0-t500x500.jpg',
-'M�sica bem bacana!'),
+1),
 
 ('She Knows Your Fears',
 'Takai The Maid',
@@ -180,35 +193,35 @@ Hu War Opkam Har a Hit Lot',
 '20240920',
 3,
 'https://i.ytimg.com/vi/VF19dyVaz1o/maxresdefault.jpg',
-'M�sica bem bacana!'),
+1),
 
-('Evid�ncias',
-'Chit�ozinho & Xoror�',
+('Evidências',
+'Chitãozinho & Xororó',
 'Quando eu digo que deixei de te amar
-� porque eu te amo
-Quando eu digo que n�o quero mais voc�
-� porque eu te quero
-Eu tenho medo de te dar meu cora��o
-E confessar que eu estou em tuas m�os
-Mas n�o posso imaginar
+É porque eu te amo
+Quando eu digo que não quero mais você
+É porque eu te quero
+Eu tenho medo de te dar meu coração
+E confessar que eu estou em tuas mãos
+Mas não posso imaginar
 O que vai ser de mim
 Se eu te perder um dia
 
-Eu me afasto e me defendo de voc�
+Eu me afasto e me defendo de você
 Mas depois me entrego
-Fa�o tipo, falo coisas que eu n�o sou
+Faço tipo, falo coisas que eu não sou
 Mas depois eu nego
 Mas a verdade
-� que eu sou louco por voc�
+É que eu sou louco por você
 E tenho medo de pensar em te perder
-Eu preciso aceitar que n�o d� mais
+Eu preciso aceitar que não dá mais
 Pra separar as nossas vidas
 
-E nessa loucura de dizer que n�o te quero
-Vou negando as apar�ncias
-Disfar�ando as evid�ncias
+E nessa loucura de dizer que não te quero
+Vou negando as aparências
+Disfarçando as evidências
 Mas pra que viver fingindo
-Se eu n�o posso enganar meu cora��o?
+Se eu não posso enganar meu coração?
 Eu sei que te amo!
 
 Chega de mentiras
@@ -216,34 +229,31 @@ De negar o meu desejo
 Eu te quero mais que tudo
 Eu preciso do seu beijo
 Eu entrego a minha vida
-Pra voc� fazer o que quiser de mim
-S� quero ouvir voc� dizer que sim!
+Pra você fazer o que quiser de mim
+Só quero ouvir você dizer que sim!
 
-Diz que � verdade, que tem saudade
-Que ainda voc� pensa muito em mim
-Diz que � verdade, que tem saudade
-Que ainda voc� quer viver pra mim',
+Diz que é verdade, que tem saudade
+Que ainda você pensa muito em mim
+Diz que é verdade, que tem saudade
+Que ainda você quer viver pra mim',
 '19901204',
 5,
 'https://images.genius.com/28248ea84fe661efdeca1ee191ca31fd.1000x1000x1.png',
-'M�sica bem bacana!');
-
-
-SELECT * FROM Musica
-SELECT * FROM Genero
-SELECT * FROM MusicaGenero
-
+1);
+GO
+INSERT INTO Comentario (Texto, IdMusica, IdUsuario)
+VALUES
+('Som tribal maneiro', 1, 1),
+('Música bem bacana!', 2, 1),
+('Música bem bacana!', 3, 1),
+('Música bem bacana!', 4, 1);
+GO
 INSERT MusicaGenero (IdMusica, IdGenero)
 VALUES
-(1,1), --Invoca��o do mal (terror)
-(1,2); --Invoca��o do mal (suspense)
-
-SELECT F.Titulo , F.DataLancamento, F.Duracao, G.Nome AS Genero
-FROM Musica F INNER JOIN MusicaGenero FG
-ON F.IdMusica = FG.IdMusica INNER JOIN Genero G
-ON G.IdGenero = FG.IdGenero
-ORDER BY F.Titulo
-
-SELECT * FROM Musica
-
-DELETE FROM Usuario
+(1,1),
+(1,2);
+GO
+SELECT * FROM Musica;
+SELECT * FROM Genero;
+SELECT * FROM MusicaGenero;
+SELECT * FROM Comentario;
