@@ -79,8 +79,9 @@ public class MusicaController : ControllerBase
         catch (HttpRequestException) { return Problem("Falha ao enviar a capa ao Cloudinary.", statusCode: 502); }
 
         var imagem = string.IsNullOrWhiteSpace(dto.ImagemCapa) ? null : dto.ImagemCapa;
+        var urlMusica = string.IsNullOrWhiteSpace(dto.UrlMusica) ? null : dto.UrlMusica.Trim();
 
-        var musica = Converter(dto, generos, novaUrl ?? imagem, usuarioId.Value);
+        var musica = Converter(dto, generos, novaUrl ?? imagem, urlMusica, usuarioId.Value);
 
         try
         {
@@ -125,10 +126,11 @@ public class MusicaController : ControllerBase
 
         // Sem nova imagem informada, mantém a capa atual.
         var imagem = novaUrl ?? (string.IsNullOrWhiteSpace(dto.ImagemCapa) ? atual.ImagemCapa : dto.ImagemCapa);
+        var urlMusica = string.IsNullOrWhiteSpace(dto.UrlMusica) ? atual.UrlMusica : dto.UrlMusica.Trim();
 
         try
         {
-            await _musicaRepository.Atualizar(id, Converter(dto, generos, imagem, atual.IdUsuario));
+            await _musicaRepository.Atualizar(id, Converter(dto, generos, imagem, urlMusica, atual.IdUsuario));
         }
         catch
         {
@@ -176,7 +178,7 @@ public class MusicaController : ControllerBase
         return generos.Count == distintos.Length ? generos : null;
     }
 
-    private static Musica Converter(MusicaDTO dto, List<Genero> generos, string? imagemCapa, int idUsuario) => new()
+    private static Musica Converter(MusicaDTO dto, List<Genero> generos, string? imagemCapa, string? urlMusica, int idUsuario) => new()
     {
         Titulo = dto.Titulo.Trim(),
         Artista = dto.Artista.Trim(),
@@ -184,6 +186,7 @@ public class MusicaController : ControllerBase
         DataLancamento = dto.DataLancamento!.Value,
         Duracao = dto.Duracao,
         ImagemCapa = imagemCapa,
+        UrlMusica = urlMusica,
         IdUsuario = idUsuario,
         IdGenero = generos
     };

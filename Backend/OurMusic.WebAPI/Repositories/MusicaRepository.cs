@@ -26,6 +26,7 @@ public class MusicaRepository : IMusicaRepository
             musicaExistente.DataLancamento = musica.DataLancamento;
             musicaExistente.Duracao = musica.Duracao;
             musicaExistente.ImagemCapa = musica.ImagemCapa;
+            musicaExistente.UrlMusica = musica.UrlMusica;
 
             musicaExistente.IdGenero.Clear();
             foreach (var genero in musica.IdGenero)

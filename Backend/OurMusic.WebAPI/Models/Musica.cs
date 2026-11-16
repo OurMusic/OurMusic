@@ -29,6 +29,10 @@ public partial class Musica
     [Unicode(false)]
     public string? ImagemCapa { get; set; }
 
+    [StringLength(500)]
+    [Unicode(false)]
+    public string? UrlMusica { get; set; }
+
     public int IdUsuario { get; set; }
 
     [ForeignKey("IdUsuario")]

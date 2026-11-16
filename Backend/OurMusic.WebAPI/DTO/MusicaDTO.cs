@@ -26,6 +26,11 @@ public class MusicaDTO : IValidatableObject
     /// <summary>Arquivo de imagem da capa (JPG, PNG, WEBP ou GIF, até 10 MB).</summary>
     public IFormFile? ArquivoImagem { get; set; }
 
+    /// <summary>Link da música no YouTube Music / YouTube para reprodução no player do OurMusic.</summary>
+    [StringLength(500, ErrorMessage = "O link da música deve ter no máximo 500 caracteres.")]
+    [Url(ErrorMessage = "Informe uma URL válida para a música.")]
+    public string? UrlMusica { get; set; }
+
     /// <summary>Ids dos gêneros (mínimo de um).</summary>
     [Required(ErrorMessage = "A música deve estar associada a pelo menos um gênero.")]
     [MinLength(1, ErrorMessage = "A música deve estar associada a pelo menos um gênero.")]
