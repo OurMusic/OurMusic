@@ -29,15 +29,14 @@ public partial class Musica
     [Unicode(false)]
     public string? ImagemCapa { get; set; }
 
-    [StringLength(255)]
-    [Unicode(false)]
-    public string? Comentario { get; set; }
-
     public int IdUsuario { get; set; }
 
     [ForeignKey("IdUsuario")]
     [InverseProperty("Musica")]
     public virtual Usuario IdUsuarioNavigation { get; set; } = null!;
+
+    [InverseProperty("IdMusicaNavigation")]
+    public virtual ICollection<Comentario> Comentario { get; set; } = new List<Comentario>();
 
     [ForeignKey("IdMusica")]
     [InverseProperty("IdMusica")]

@@ -31,5 +31,8 @@ public partial class Usuario
     public bool Ativo { get; set; }
 
     [InverseProperty("IdUsuarioNavigation")]
+    public virtual ICollection<Comentario> Comentario { get; set; } = new List<Comentario>();
+
+    [InverseProperty("IdUsuarioNavigation")]
     public virtual ICollection<Musica> Musica { get; set; } = new List<Musica>();
 }

@@ -16,6 +16,8 @@ public partial class OurMusicContext : DbContext
     {
     }
 
+    public virtual DbSet<Comentario> Comentario { get; set; }
+
     public virtual DbSet<Genero> Genero { get; set; }
 
     public virtual DbSet<Musica> Musica { get; set; }
@@ -24,6 +26,21 @@ public partial class OurMusicContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.Entity<Comentario>(entity =>
+        {
+            entity.HasKey(e => e.IdComentario);
+
+            entity.Property(e => e.DataComentario).HasDefaultValueSql("(sysdatetime())");
+
+            entity.HasOne(d => d.IdMusicaNavigation).WithMany(p => p.Comentario)
+                .OnDelete(DeleteBehavior.Cascade)
+                .HasConstraintName("FK_Comentario_Musica");
+
+            entity.HasOne(d => d.IdUsuarioNavigation).WithMany(p => p.Comentario)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_Comentario_Usuario");
+        });
+
         modelBuilder.Entity<Genero>(entity =>
         {
             entity.HasKey(e => e.IdGenero).HasName("PK__Genero__0F834988735016CA");
