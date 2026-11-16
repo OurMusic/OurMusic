@@ -1,0 +1,253 @@
+.om-cadastro-usuario {
+  width: 100%;
+}
+
+.om-cadastro-usuario__voltar {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 400;
+  color: #a2ada3;
+  text-decoration: none;
+}
+
+.om-cadastro-usuario__voltar:hover {
+  color: #f2f4ed;
+}
+
+.om-cadastro-usuario__cabecalho {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.om-cadastro-usuario__titulo {
+  margin: 0;
+  font-size: 34px;
+  font-weight: 600;
+  letter-spacing: -1.3px;
+  line-height: 1.15;
+  color: #f2f4ed;
+}
+
+.om-cadastro-usuario__form-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  width: 100%;
+}
+
+.om-cadastro-usuario__colunas {
+  display: flex;
+  align-items: flex-start;
+  gap: 24px;
+  width: 100%;
+}
+
+.om-cadastro-usuario__col-identidade {
+  width: 300px;
+  flex-shrink: 0;
+}
+
+.om-cadastro-usuario__card-identidade {
+  background: #191d1a;
+  border: 1px solid #303831;
+  border-radius: 12px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+}
+
+.om-cadastro-usuario__card-titulo {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.5;
+  color: #f2f4ed;
+}
+
+.om-cadastro-usuario__preview {
+  width: 260px;
+  height: 260px;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #101311;
+}
+
+.om-cadastro-usuario__preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.om-cadastro-usuario__btn-tipo {
+  width: 100%;
+  height: 44px;
+  border-radius: 8px;
+  background: #222823;
+  border: 1px solid #303831;
+  color: #f2f4ed;
+  font-size: 13px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 0 18px;
+  cursor: pointer;
+}
+
+.om-cadastro-usuario__btn-tipo:hover {
+  background: #2a312b;
+}
+
+.om-cadastro-usuario__col-dados {
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+.om-cadastro-usuario__card-dados {
+  background: #191d1a;
+  border: 1px solid #303831;
+  border-radius: 12px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+}
+
+.om-cadastro-usuario__grupo-topo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.om-cadastro-usuario__grupo-topo h2 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.5;
+  color: #f2f4ed;
+}
+
+.om-cadastro-usuario__grupo-topo span {
+  font-size: 10px;
+  color: #748176;
+}
+
+.om-cadastro-usuario__campo {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+
+.om-cadastro-usuario__campo label {
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.5;
+  color: #f2f4ed;
+}
+
+.om-cadastro-usuario__linha-dupla {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  width: 100%;
+}
+
+.om-cadastro-usuario__linha-tripla {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  width: 100%;
+}
+
+.om-cadastro-usuario__select-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.om-cadastro-usuario__select {
+  appearance: none;
+  padding-right: 40px;
+}
+
+.om-cadastro-usuario__select-icone {
+  position: absolute;
+  right: 14px;
+  width: 18px;
+  height: 18px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.om-cadastro-usuario__box-leitura {
+  min-height: 100px;
+  padding: 14px;
+  border-radius: 8px;
+  border: 1px solid #303831;
+  background: #101311;
+  color: #f2f4ed;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.om-cadastro-usuario__box-leitura p {
+  margin: 0;
+}
+
+.om-cadastro-usuario__ajuda {
+  margin: 0;
+  font-size: 11px;
+  line-height: 1.5;
+  color: #a2ada3;
+}
+
+.om-cadastro-usuario__acoes-rodape {
+  border-top: 1px solid #303831;
+  padding-top: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  width: 100%;
+}
+
+.om-cadastro-usuario__acoes-rodape--somente-direita {
+  justify-content: flex-end;
+}
+
+.om-cadastro-usuario__acoes-direita {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.om-cadastro-usuario__nota-rodape {
+  margin: 0;
+  font-size: 11px;
+  color: #748176;
+}
+
+@media (max-width: 900px) {
+  .om-cadastro-usuario__colunas {
+    flex-direction: column;
+  }
+
+  .om-cadastro-usuario__col-identidade {
+    width: 100%;
+  }
+
+  .om-cadastro-usuario__linha-dupla,
+  .om-cadastro-usuario__linha-tripla {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,634 @@
+.om-catalogo {
+  width: 100%;
+}
+
+/* Animações lentas e marcantes de Fade-In e Fade-Out da Tela Inicial */
+@keyframes om-fade-in-up {
+  0% {
+    opacity: 0;
+    transform: translateY(32px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes om-fade-in-sidebar {
+  0% {
+    opacity: 0;
+    transform: translateX(-28px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes om-fade-in-topbar {
+  0% {
+    opacity: 0;
+    transform: translateY(-22px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.om-fade-in-page .om-sidebar {
+  animation: om-fade-in-sidebar 1300ms cubic-bezier(0.16, 1, 0.3, 1) 80ms both;
+}
+
+.om-fade-in-page .om-topbar,
+.om-fade-in-page .om-mobile-topbar {
+  animation: om-fade-in-topbar 1200ms cubic-bezier(0.16, 1, 0.3, 1) 150ms both;
+}
+
+.om-stagger-1 {
+  animation: om-fade-in-up 1400ms cubic-bezier(0.16, 1, 0.3, 1) 260ms both;
+}
+
+.om-stagger-2 {
+  animation: om-fade-in-up 1550ms cubic-bezier(0.16, 1, 0.3, 1) 620ms both;
+}
+
+.om-stagger-3 {
+  animation: om-fade-in-up 1500ms cubic-bezier(0.16, 1, 0.3, 1) 1020ms both;
+}
+
+.om-stagger-4 {
+  animation: om-fade-in-up 1550ms cubic-bezier(0.16, 1, 0.3, 1) 1380ms both;
+}
+
+.om-catalogo__generos-lista .om-catalogo__genero-pill {
+  animation: om-fade-in-up 1100ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+.om-catalogo__generos-lista .om-catalogo__genero-pill:nth-child(1) {
+  animation-delay: 1120ms;
+}
+.om-catalogo__generos-lista .om-catalogo__genero-pill:nth-child(2) {
+  animation-delay: 1240ms;
+}
+.om-catalogo__generos-lista .om-catalogo__genero-pill:nth-child(3) {
+  animation-delay: 1360ms;
+}
+.om-catalogo__generos-lista .om-catalogo__genero-pill:nth-child(4) {
+  animation-delay: 1480ms;
+}
+.om-catalogo__generos-lista .om-catalogo__genero-pill:nth-child(5) {
+  animation-delay: 1600ms;
+}
+.om-catalogo__generos-lista .om-catalogo__genero-pill:nth-child(6) {
+  animation-delay: 1720ms;
+}
+.om-catalogo__generos-lista .om-catalogo__genero-pill:nth-child(7) {
+  animation-delay: 1840ms;
+}
+.om-catalogo__generos-lista .om-catalogo__genero-pill:nth-child(8) {
+  animation-delay: 1960ms;
+}
+
+.om-fade-transition {
+  transition:
+    opacity 900ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 900ms cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+
+.om-is-fading-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.om-is-fading-out {
+  opacity: 0;
+  transform: translateY(14px);
+}
+
+.om-catalogo__grade .card-musica {
+  animation: om-fade-in-up 1300ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.om-catalogo__grade .card-musica:nth-child(1) {
+  animation-delay: 150ms;
+}
+.om-catalogo__grade .card-musica:nth-child(2) {
+  animation-delay: 380ms;
+}
+.om-catalogo__grade .card-musica:nth-child(3) {
+  animation-delay: 610ms;
+}
+.om-catalogo__grade .card-musica:nth-child(4) {
+  animation-delay: 840ms;
+}
+.om-catalogo__grade .card-musica:nth-child(5) {
+  animation-delay: 1070ms;
+}
+
+.om-only-mobile {
+  display: none !important;
+}
+
+.om-catalogo__apresentacao {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  width: 100%;
+  gap: 16px;
+}
+
+.om-catalogo__saudacao {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.om-catalogo__boas-vindas {
+  margin: 0;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #a2ada3;
+}
+
+.om-catalogo__titulo {
+  margin: 0;
+  font-size: 36px;
+  font-weight: 600;
+  letter-spacing: -1.4px;
+  line-height: 1.15;
+  color: #f2f4ed;
+}
+
+.om-catalogo__tamanho {
+  margin: 0;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #a2ada3;
+  white-space: nowrap;
+}
+
+.om-catalogo__destaque {
+  width: 100%;
+  min-height: 248px;
+  background: #23352b;
+  border-radius: 18px;
+  padding: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+}
+
+.om-catalogo__destaque-chamada {
+  flex: 1 1 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.om-catalogo__destaque-selo {
+  margin: 0;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 1.8px;
+  color: #b7e887;
+}
+
+.om-catalogo__destaque-titulo {
+  margin: 0;
+  font-size: 42px;
+  font-weight: 600;
+  letter-spacing: -1.8px;
+  line-height: 1.12;
+  color: #f2f4ed;
+}
+
+.om-catalogo__destaque-desc {
+  margin: 0;
+  max-width: 500px;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #c1cebf;
+}
+
+.om-catalogo__destaque-btn {
+  height: 36px;
+  padding: 0 12px;
+  border-radius: 8px;
+  background: #b7e887;
+  color: #152011;
+  font-size: 12px;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  transition: background-color 150ms ease;
+}
+
+.om-catalogo__destaque-btn:hover {
+  background: #a3dc6f;
+  color: #152011;
+}
+
+.om-catalogo__destaque-arte {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-shrink: 0;
+}
+
+.om-catalogo__destaque-edicao {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+}
+
+.om-catalogo__edicao-rotulo {
+  font-size: 10px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #a2ada3;
+}
+
+.om-catalogo__edicao-numero {
+  font-size: 56px;
+  font-weight: 300;
+  letter-spacing: -3px;
+  line-height: 1;
+  color: #728a73;
+}
+
+.om-catalogo__edicao-linha {
+  width: 36px;
+  height: 1px;
+  background: #728a73;
+}
+
+.om-catalogo__destaque-capa {
+  width: 204px;
+  height: 204px;
+  border-radius: 8px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.om-catalogo__destaque-capa img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.om-catalogo__pesquisa-generos {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+}
+
+.om-catalogo__busca-wrapper {
+  display: flex;
+  width: 100%;
+}
+
+.om-catalogo__busca {
+  width: 100%;
+  height: 44px;
+  background: #191d1a;
+  border: 1px solid #303831;
+  border-radius: 8px;
+  padding: 0 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.om-catalogo__busca-icone {
+  width: 18px;
+  height: 18px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.om-catalogo__busca input {
+  flex: 1 1 0;
+  min-width: 0;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: #f2f4ed;
+  font-size: 13px;
+}
+
+.om-catalogo__busca input::placeholder {
+  color: #a2ada3;
+}
+
+.om-catalogo__generos-lista {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.om-catalogo__genero-pill {
+  height: 34px;
+  padding: 0 16px;
+  border-radius: 100px;
+  background: #191d1a;
+  border: 1px solid #303831;
+  color: #a2ada3;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.5;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background-color 150ms ease, color 150ms ease, border-color 150ms ease;
+}
+
+.om-catalogo__genero-pill:hover {
+  border-color: #b7e887;
+  color: #f2f4ed;
+}
+
+.om-catalogo__genero-pill--ativo {
+  background: #b7e887;
+  border-color: #b7e887;
+  color: #152011;
+  font-weight: 600;
+}
+
+.om-catalogo__genero-pill--ativo:hover {
+  background: #b7e887;
+  color: #152011;
+}
+
+.om-catalogo__resultados {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+}
+
+.om-catalogo__resultados-topo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.om-catalogo__resultados-resumo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.om-catalogo__resultados-titulo {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: -0.5px;
+  color: #f2f4ed;
+}
+
+.om-catalogo__resultados-qtd {
+  font-size: 12px;
+  font-weight: 400;
+  color: #a2ada3;
+}
+
+.om-catalogo__grade {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 20px;
+  width: 100%;
+}
+
+.om-catalogo__estado {
+  margin: 0;
+  padding: 36px 20px;
+  background: #191d1a;
+  border: 1px solid #303831;
+  border-radius: 12px;
+  text-align: center;
+  color: #a2ada3;
+  font-size: 13px;
+}
+
+.om-catalogo__paginacao {
+  border-top: 1px solid #303831;
+  padding-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.om-catalogo__paginacao-texto {
+  font-size: 12px;
+  color: #748176;
+}
+
+.om-catalogo__paginas {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.om-catalogo__pagina-anterior {
+  height: 36px;
+  padding: 0 12px;
+  border-radius: 8px;
+  border: none;
+  background: transparent;
+  color: #f2f4ed;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.om-catalogo__pagina-anterior:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.om-catalogo__pagina-num {
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  border: none;
+  background: transparent;
+  color: #a2ada3;
+  font-size: 12px;
+  font-weight: 400;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.om-catalogo__pagina-num--ativa {
+  background: #253b24;
+  color: #b7e887;
+}
+
+.om-catalogo__pagina-proxima {
+  height: 36px;
+  padding: 0 12px;
+  border-radius: 8px;
+  background: #222823;
+  border: 1px solid #303831;
+  color: #f2f4ed;
+  font-size: 12px;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.om-catalogo__pagina-proxima:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+@media (max-width: 900px) {
+  .om-only-desktop {
+    display: none !important;
+  }
+
+  .om-only-mobile {
+    display: flex !important;
+  }
+
+  .om-catalogo__apresentacao {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .om-catalogo__tamanho {
+    display: none;
+  }
+
+  .om-catalogo__boas-vindas {
+    font-size: 10px;
+  }
+
+  .om-catalogo__titulo {
+    font-size: 31px;
+    letter-spacing: -1.3px;
+    max-width: 240px;
+  }
+
+  .om-catalogo__destaque {
+    min-height: auto;
+    padding: 18px;
+    border-radius: 12px;
+    gap: 14px;
+  }
+
+  .om-catalogo__destaque-chamada {
+    gap: 12px;
+  }
+
+  .om-catalogo__destaque-selo {
+    font-size: 9px;
+    letter-spacing: 1px;
+  }
+
+  .om-catalogo__destaque-titulo {
+    font-size: 23px;
+    letter-spacing: -0.6px;
+    line-height: 1.15;
+  }
+
+  .om-catalogo__destaque-artista-mobile {
+    margin: 0;
+    font-size: 11px;
+    color: #a2ada3;
+  }
+
+  .om-catalogo__destaque-link-mobile {
+    align-items: center;
+    gap: 5px;
+    font-size: 11px;
+    font-weight: 600;
+    color: #b7e887;
+    text-decoration: none;
+  }
+
+  .om-catalogo__destaque-capa {
+    width: 126px;
+    height: 126px;
+    border-radius: 7px;
+  }
+
+  .om-catalogo__genero-pill {
+    height: 32px;
+    padding: 0 14px;
+    font-size: 11px;
+    font-weight: 500;
+  }
+
+  .om-catalogo__resultados-resumo {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 3px;
+  }
+
+  .om-catalogo__resultados-titulo {
+    font-size: 20px;
+  }
+
+  .om-catalogo__resultados-qtd {
+    font-size: 11px;
+  }
+
+  .om-catalogo__grade {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+  }
+
+  .om-catalogo__mobile-paginacao {
+    flex-direction: column;
+    gap: 16px;
+    width: 100%;
+    padding-top: 4px;
+  }
+
+  .om-catalogo__carregar-mais {
+    width: 100%;
+    height: 44px;
+    border-radius: 8px;
+    background: #222823;
+    border: 1px solid #303831;
+    color: #f2f4ed;
+    font-size: 13px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+
+  .om-catalogo__contagem-mobile {
+    margin: 0;
+    width: 100%;
+    text-align: center;
+    font-size: 10px;
+    color: #748176;
+  }
+}

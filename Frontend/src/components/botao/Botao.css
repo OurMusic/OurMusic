@@ -1,0 +1,68 @@
+.botao {
+  height: 44px;
+  min-height: 44px;
+  padding: 0 18px;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.5;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background-color 160ms ease, border-color 160ms ease, opacity 160ms ease, transform 160ms ease;
+}
+
+.botao:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.botao--primario {
+  background: var(--cor-primaria);
+  color: var(--cor-texto-botao-primario);
+}
+
+.botao--primario:hover:not(:disabled) {
+  background: var(--cor-primaria-escura);
+}
+
+.botao--secundario {
+  background: var(--cor-secundaria);
+  border-color: var(--cor-borda);
+  color: var(--cor-texto);
+}
+
+.botao--secundario:hover:not(:disabled) {
+  background: #2a312b;
+}
+
+.botao--perigo {
+  background: var(--cor-perigo-fundo);
+  color: var(--cor-perigo-texto);
+}
+
+.botao--perigo:hover:not(:disabled) {
+  background: #462c28;
+}
+
+.botao--fantasma {
+  background: transparent;
+  color: var(--cor-texto);
+}
+
+.botao--fantasma:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.botao__icone {
+  width: 18px;
+  height: 18px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}

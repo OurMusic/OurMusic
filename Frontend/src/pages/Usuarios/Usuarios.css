@@ -1,0 +1,140 @@
+.om-usuarios {
+  width: 100%;
+}
+
+.om-usuarios__cabecalho {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  width: 100%;
+}
+
+.om-usuarios__apresentacao {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.om-usuarios__contexto {
+  margin: 0;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  color: #b7e887;
+}
+
+.om-usuarios__titulo {
+  margin: 0;
+  font-size: 34px;
+  font-weight: 600;
+  letter-spacing: -1.3px;
+  line-height: 1.15;
+  color: #f2f4ed;
+}
+
+.om-usuarios__resumo {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  width: 100%;
+}
+
+.om-usuarios__indicador {
+  background: #191d1a;
+  border: 1px solid #303831;
+  border-radius: 12px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.om-usuarios__indicador-qtd {
+  font-size: 30px;
+  font-weight: 600;
+  letter-spacing: -1px;
+  line-height: 1.2;
+  color: #f2f4ed;
+}
+
+.om-usuarios__indicador-cat {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #a2ada3;
+}
+
+.om-usuarios__guia {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  width: 100%;
+}
+
+.om-usuarios__guia-titulo {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.5;
+  color: #f2f4ed;
+}
+
+.om-usuarios__perfis {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  width: 100%;
+}
+
+.om-usuarios__perfil-card {
+  border: 1px solid #303831;
+  border-radius: 12px;
+  padding: 20px;
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.om-usuarios__perfil-icone {
+  width: 22px;
+  height: 22px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.om-usuarios__perfil-texto {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.om-usuarios__perfil-texto h3 {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.5;
+  color: #f2f4ed;
+}
+
+.om-usuarios__perfil-texto p {
+  margin: 0;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #a2ada3;
+}
+
+@media (max-width: 900px) {
+  .om-usuarios__cabecalho {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .om-usuarios__resumo,
+  .om-usuarios__perfis {
+    grid-template-columns: 1fr;
+  }
+}

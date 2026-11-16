@@ -1,0 +1,341 @@
+.om-login {
+  width: 100%;
+  min-height: 100vh;
+  background: #101311;
+  display: flex;
+  align-items: stretch;
+  transition:
+    opacity 850ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 850ms cubic-bezier(0.22, 1, 0.36, 1),
+    filter 850ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes om-login-slow-reveal {
+  0% {
+    opacity: 0;
+    transform: translateY(32px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.om-login--fade-in {
+  opacity: 1;
+}
+
+.om-login--fade-out {
+  opacity: 0;
+  transform: translateY(-14px);
+}
+
+.om-login__manifesto {
+  position: relative;
+  width: 710px;
+  min-height: 900px;
+  padding: 48px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+  flex-shrink: 0;
+  background: #0b0e0c;
+}
+
+.om-login__retrato {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  animation: om-login-slow-reveal 1600ms cubic-bezier(0.16, 1, 0.3, 1) 100ms both;
+}
+
+.om-login__retrato-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: opacity 1000ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.om-login__retrato-img--visivel {
+  opacity: 1;
+}
+
+.om-login__retrato-img--oculta {
+  opacity: 0;
+}
+
+.om-login__contraste {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(7, 17, 11, 0.2) 0%,
+    rgba(7, 17, 11, 0) 45%,
+    rgba(7, 17, 11, 0.95) 100%
+  );
+  pointer-events: none;
+}
+
+.om-login__marca {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  animation: om-login-slow-reveal 1400ms cubic-bezier(0.16, 1, 0.3, 1) 250ms both;
+}
+
+.om-login__marca-icone {
+  width: 32px;
+  height: 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.om-login__marca-texto {
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: -1.5px;
+  line-height: 1;
+  color: #f2f4ed;
+}
+
+.om-login__marca-ponto {
+  width: 6px;
+  height: 6px;
+  border-radius: 3px;
+  background: #b7e887;
+}
+
+.om-login__manifesto-conteudo {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  animation: om-login-slow-reveal 1600ms cubic-bezier(0.16, 1, 0.3, 1) 600ms both;
+}
+
+.om-login__manifesto-transicao {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+  transition:
+    opacity 1000ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 1000ms cubic-bezier(0.22, 1, 0.36, 1),
+    filter 1000ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.om-login__manifesto-transicao--fade-in {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+}
+
+.om-login__manifesto-transicao--fade-out {
+  opacity: 0;
+  transform: translateY(20px);
+  filter: blur(5px);
+}
+
+.om-login__chamada {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  font-size: 64px;
+  font-weight: 600;
+  letter-spacing: -3.6px;
+  line-height: 1.04;
+  color: #f2f4ed;
+}
+
+.om-login__descricao {
+  margin: 0;
+  max-width: 465px;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #d0d8ce;
+}
+
+.om-login__rodape-editorial {
+  padding-top: 18px;
+  font-size: 10px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #a2ada3;
+}
+
+.om-login__acesso {
+  flex: 1 1 0;
+  min-width: 0;
+  min-height: 900px;
+  padding: 54px 88px 36px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.om-login__links-legais {
+  width: 100%;
+  max-width: 474px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 10px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #748176;
+  white-space: pre;
+  animation: om-login-slow-reveal 1300ms cubic-bezier(0.16, 1, 0.3, 1) 400ms both;
+}
+
+.om-login__formulario {
+  width: 100%;
+  max-width: 474px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.om-login__boas-vindas {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  animation: om-login-slow-reveal 1450ms cubic-bezier(0.16, 1, 0.3, 1) 750ms both;
+}
+
+.om-login__contexto {
+  margin: 0;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1.8px;
+  color: #b7e887;
+}
+
+.om-login__titulo {
+  margin: 0;
+  font-size: 36px;
+  font-weight: 600;
+  letter-spacing: -1.5px;
+  line-height: 1.15;
+  color: #f2f4ed;
+}
+
+.om-login__subtitulo {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #a2ada3;
+}
+
+.om-login__credenciais {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+}
+
+.om-login__campo-grupo {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+  animation: om-login-slow-reveal 1400ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.om-login__campo-grupo:nth-child(1) {
+  animation-delay: 1100ms;
+}
+
+.om-login__campo-grupo:nth-child(2) {
+  animation-delay: 1400ms;
+}
+
+.om-login__campo-grupo label {
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.5;
+  color: #f2f4ed;
+}
+
+.om-login__entrada {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.om-login__entrada .campo {
+  padding-right: 42px;
+}
+
+.om-login__entrada-icone {
+  position: absolute;
+  right: 14px;
+  width: 18px;
+  height: 18px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.om-login__entrada-btn {
+  pointer-events: auto;
+  border: none;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+}
+
+.om-login__botao-entrar {
+  width: 100%;
+  animation: om-login-slow-reveal 1400ms cubic-bezier(0.16, 1, 0.3, 1) 1700ms both;
+}
+
+.om-login__espacador-inferior {
+  height: 15px;
+}
+
+@media (max-width: 1150px) {
+  .om-login__manifesto {
+    width: 48%;
+  }
+
+  .om-login__chamada {
+    font-size: 48px;
+  }
+
+  .om-login__acesso {
+    padding: 40px 48px;
+  }
+}
+
+@media (max-width: 860px) {
+  .om-login {
+    flex-direction: column;
+  }
+
+  .om-login__manifesto {
+    width: 100%;
+    min-height: 360px;
+    padding: 28px 24px;
+  }
+
+  .om-login__chamada {
+    font-size: 38px;
+    letter-spacing: -1.8px;
+  }
+
+  .om-login__acesso {
+    min-height: auto;
+    padding: 36px 24px 48px;
+    gap: 32px;
+  }
+}
