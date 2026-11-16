@@ -2,7 +2,7 @@ using OurMusic.WebAPI.Models;
 
 namespace OurMusic.WebAPI.DTO;
 
-/// <summary>Detalhes completos de uma música (inclui a letra).</summary>
+/// <summary>Detalhes completos de uma música (inclui a letra e o usuário que a cadastrou).</summary>
 public record MusicaRespostaDTO(
     int IdMusica,
     string Titulo,
@@ -12,6 +12,7 @@ public record MusicaRespostaDTO(
     int Duracao,
     string? ImagemCapa,
     string? Comentario,
+    int IdUsuario,
     List<GeneroRespostaDTO> Generos)
 {
     public static MusicaRespostaDTO Converter(Musica musica) => new(
@@ -23,6 +24,7 @@ public record MusicaRespostaDTO(
         musica.Duracao,
         musica.ImagemCapa,
         musica.Comentario,
+        musica.IdUsuario,
         musica.IdGenero.OrderBy(g => g.Nome).Select(GeneroRespostaDTO.Converter).ToList());
 }
 
@@ -34,6 +36,7 @@ public record MusicaResumoDTO(
     DateOnly DataLancamento,
     int Duracao,
     string? ImagemCapa,
+    int IdUsuario,
     List<GeneroRespostaDTO> Generos)
 {
     public static MusicaResumoDTO Converter(Musica musica) => new(
@@ -43,5 +46,6 @@ public record MusicaResumoDTO(
         musica.DataLancamento,
         musica.Duracao,
         musica.ImagemCapa,
+        musica.IdUsuario,
         musica.IdGenero.OrderBy(g => g.Nome).Select(GeneroRespostaDTO.Converter).ToList());
 }

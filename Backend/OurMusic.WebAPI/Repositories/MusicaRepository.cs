@@ -59,7 +59,7 @@ public class MusicaRepository : IMusicaRepository
         }
     }
 
-    public async Task<(List<Musica> musicas, int total)> ListarPaginado(int pagina = 1, int tamanhoPagina = 10, string? busca = null, int? idGenero = null)
+    public async Task<(List<Musica> musicas, int total)> ListarPaginado(int pagina = 1, int tamanhoPagina = 10, string? busca = null, int? idGenero = null, int? idUsuario = null)
     {
         var query = _context.Musica.AsNoTracking().Include(m => m.IdGenero).AsQueryable();
 
@@ -72,6 +72,11 @@ public class MusicaRepository : IMusicaRepository
         if (idGenero is not null)
         {
             query = query.Where(m => m.IdGenero.Any(g => g.IdGenero == idGenero));
+        }
+
+        if (idUsuario is not null)
+        {
+            query = query.Where(m => m.IdUsuario == idUsuario);
         }
 
         int total = await query.CountAsync();
