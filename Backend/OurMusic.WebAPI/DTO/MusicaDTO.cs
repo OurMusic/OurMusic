@@ -20,9 +20,6 @@ public class MusicaDTO : IValidatableObject
     [Range(1, int.MaxValue, ErrorMessage = "A duração deve ser maior que zero.")]
     public int Duracao { get; set; }
 
-    [StringLength(255, ErrorMessage = "O comentário deve ter no máximo 255 caracteres.")]
-    public string? Comentario { get; set; }
-
     /// <summary>URL da capa já existente. Envie este campo OU ArquivoImagem.</summary>
     public string? ImagemCapa { get; set; }
 

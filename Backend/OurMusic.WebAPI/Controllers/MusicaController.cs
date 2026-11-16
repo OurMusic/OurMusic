@@ -43,7 +43,7 @@ public class MusicaController : ControllerBase
     }
 
     /// <summary>
-    /// RF06 - Detalhes de uma música (inclui a letra).
+    /// RF06 - Detalhes de uma música (inclui a letra e os comentários).
     /// </summary>
     [HttpGet("{id:int}")]
     public async Task<IActionResult> BuscarPorId(int id)
@@ -184,7 +184,6 @@ public class MusicaController : ControllerBase
         DataLancamento = dto.DataLancamento!.Value,
         Duracao = dto.Duracao,
         ImagemCapa = imagemCapa,
-        Comentario = dto.Comentario,
         IdUsuario = idUsuario,
         IdGenero = generos
     };

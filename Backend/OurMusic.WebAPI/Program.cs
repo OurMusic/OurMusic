@@ -17,6 +17,7 @@ builder.Services.AddDbContext<OurMusicContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")
         ?? throw new InvalidOperationException("Configure a ConnectionString")));
 
+builder.Services.AddScoped<IComentarioRepository, ComentarioRepository>();
 builder.Services.AddScoped<IGeneroRepository, GeneroRepository>();
 builder.Services.AddScoped<IMusicaRepository, MusicaRepository>();
 builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();

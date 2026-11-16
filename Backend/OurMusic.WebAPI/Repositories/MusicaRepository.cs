@@ -26,7 +26,6 @@ public class MusicaRepository : IMusicaRepository
             musicaExistente.DataLancamento = musica.DataLancamento;
             musicaExistente.Duracao = musica.Duracao;
             musicaExistente.ImagemCapa = musica.ImagemCapa;
-            musicaExistente.Comentario = musica.Comentario;
 
             musicaExistente.IdGenero.Clear();
             foreach (var genero in musica.IdGenero)
@@ -38,7 +37,12 @@ public class MusicaRepository : IMusicaRepository
 
     public async Task<Musica?> BuscarPorId(int id)
     {
-        return await _context.Musica.AsNoTracking().Include(m => m.IdGenero).FirstOrDefaultAsync(m => m.IdMusica == id);
+        return await _context.Musica
+            .AsNoTracking()
+            .Include(m => m.IdGenero)
+            .Include(m => m.Comentario)
+                .ThenInclude(c => c.IdUsuarioNavigation)
+            .FirstOrDefaultAsync(m => m.IdMusica == id);
     }
 
     public async Task Cadastrar(Musica musica)
